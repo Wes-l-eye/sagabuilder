@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages serves from https://wes-l-eye.github.io/sagabuilder/
-  // The base path must match the repo name so asset URLs resolve correctly.
-  base: '/sagabuilder/',
+  // CF_PAGES=1 is automatically set by Cloudflare Pages during its build.
+  // Cloudflare serves from root (/), GitHub Pages serves from /sagabuilder/.
+  base: process.env.CF_PAGES ? '/' : '/sagabuilder/',
   build: {
     outDir: 'docs',
     emptyOutDir: true,
